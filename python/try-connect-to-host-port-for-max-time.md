@@ -1,6 +1,8 @@
 # Wait for port to open on host
 
-I was using PostgreSQL inside by Python application and wanted to wait a specific length of time for the database to become available before giving up.
+I was using PostgreSQL inside a Python application and wanted to wait a specific length of time for the database to become available before giving up.
+
+I built a reusable function (async) function for this:
 
 ```python
 import asyncio
@@ -34,4 +36,12 @@ async def wait_for_host_port(
             print(f"Unable to connect host='{host}' port='{port}'.")
             await asyncio.sleep(interval)
     return False
+```
+
+Called like this:
+
+```python
+can_connect = await wait_for_host_port("localhost", 5423, duration=2)
+if not can_connect:
+    ...
 ```
