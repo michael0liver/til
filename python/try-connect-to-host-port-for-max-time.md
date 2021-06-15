@@ -41,7 +41,7 @@ async def wait_for_host_port(
 Called like this:
 
 ```python
-can_connect = await wait_for_host_port("localhost", 5423, duration=2)
+can_connect = await wait_for_host_port("localhost", 5423, duration=120)
 if not can_connect:
     ...
 ```
